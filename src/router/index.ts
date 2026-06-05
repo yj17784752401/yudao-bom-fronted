@@ -2,12 +2,14 @@ import type { App } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import remainingRouter from './modules/remaining'
+import bomRouter from './modules/bom' // 假设你的路由文件放在 src/router/modules/bom.ts
 
 // 创建路由实例
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_PATH), // createWebHashHistory URL带#，createWebHistory URL不带#
   strict: true,
-  routes: remainingRouter as RouteRecordRaw[],
+  // routes: remainingRouter as RouteRecordRaw[],
+  routes: [...remainingRouter, bomRouter] as RouteRecordRaw[],
   scrollBehavior: () => {
     // 新开标签时、返回标签时，滚动条回到顶部，否则会保留上次标签的滚动位置。
     const scrollbarWrap = document.querySelector('.v-layout-content-scrollbar .el-scrollbar__wrap')
